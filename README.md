@@ -1,5 +1,5 @@
 # GitHub项目智能搜索引擎
-基于DeepSeek AI技术的GitHub项目智能搜索引擎，为开发者提供精准的项目推荐和搜索服务。代码保存在该项目的github_searching.rar的github searching文件夹中。
+基于DeepSeek AI技术的GitHub项目智能搜索引擎，为开发者提供精准的项目推荐和搜索服务。代码保存在该项目的github_searching的github searching文件夹中。
 
 项目结构：
 我们的系统采用了分层架构设计，从上到下分为前端展示层、FastAPI应用层、服务模块层和数据层。

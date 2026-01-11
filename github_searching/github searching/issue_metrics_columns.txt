@@ -1,0 +1,36 @@
+Issue_Metrics工作表列信息
+================================================================================
+
+总行数: 300
+总列数: 29
+
+列名列表:
+1. Organization
+2. Project
+3. Project_Key
+4. issues_new_Latest
+5. issues_new_Data_Points
+6. issues_new_Average
+7. issues_new_Min
+8. issues_new_Max
+9. issues_closed_Latest
+10. issues_closed_Data_Points
+11. issues_closed_Average
+12. issues_closed_Min
+13. issues_closed_Max
+14. issue_age_Keys_Count
+15. issue_age_Sample_Keys
+16. issue_comments_Latest
+17. issue_comments_Data_Points
+18. issue_comments_Average
+19. issue_comments_Min
+20. issue_comments_Max
+21. issue_resolution_duration_Keys_Count
+22. issue_resolution_duration_Sample_Keys
+23. issue_response_time_Keys_Count
+24. issue_response_time_Sample_Keys
+25. issues_and_change_request_active_Latest
+26. issues_and_change_request_active_Data_Points
+27. issues_and_change_request_active_Average
+28. issues_and_change_request_active_Min
+29. issues_and_change_request_active_Max

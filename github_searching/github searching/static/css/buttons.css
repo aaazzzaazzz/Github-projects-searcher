@@ -1,0 +1,110 @@
+/* 功能按钮区域样式 */
+.function-buttons-section {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0; /* 移除圆角 */
+    padding: 20px;
+    margin: 20px 0 0 0; /* 移除底部边距，使按钮区域紧贴页脚 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 功能按钮区域标题样式 */
+.function-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.function-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #28a745);
+    border-radius: 2px;
+}
+
+.function-buttons-section .btn {
+    margin: 5px;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 第一行按钮的特殊样式 */
+.function-buttons-section .btn-lg {
+    padding: 12px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap !important;
+    min-width: 100px;
+    flex-wrap: nowrap;
+}
+
+/* 第二行按钮的特殊样式 - 与第一行按钮一致 */
+.function-buttons-section .btn-group .btn {
+    margin: 5px;
+    transition: all 0.3s ease;
+    border-radius: 25px !important;
+    padding: 10px 35px; /* 与第一行按钮相同的内边距 */
+    font-size: 0.9rem; /* 与第一行按钮相同的字体大小 */
+    font-weight: 600; /* 与第一行按钮相同的字体粗细 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* 与第一行按钮相同的阴影 */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap !important;
+    min-width: 100px;
+    flex-wrap: nowrap;
+}
+
+.function-buttons-section .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 移除重复的btn-lg样式，已合并到上面的定义 */
+
+.function-buttons-section .btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+    background-color: transparent;
+}
+
+.function-buttons-section .btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+
+/* 移除重复的样式，已合并到上面的定义 */
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .function-buttons-section .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .function-buttons-section .btn-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .function-buttons-section .btn-group .btn {
+        margin: 5px 0;
+        width: 100%;
+    }
+}

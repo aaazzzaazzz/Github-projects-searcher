@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="基于DeepSeek AI的GitHub项目智能搜索引擎">
+    <meta name="keywords" content="GitHub, 搜索, AI, DeepSeek, 开源项目">
+    <title>GitHub项目智能搜索引擎</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/buttons.css" rel="stylesheet">
+    <link href="/static/css/footer.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fab fa-github me-2"></i>
+                GitHub项目搜索引擎
+            </a>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="container-fluid">
+        <!-- 搜索区域 -->
+        <section class="search-section text-center py-5">
+            <div class="container">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-search me-3"></i>
+                    GitHub项目智能搜索
+                </h1>
+                <p class="lead mb-4">
+                    基于DeepSeek AI的智能项目推荐，帮助您查找需要的开源项目
+                </p>
+                
+                <!-- 搜索框 -->
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-8">
+                        <form id="searchForm" class="d-flex">
+                            <input
+                                type="text"
+                                class="form-control form-control-lg me-2"
+                                id="searchQuery"
+                                placeholder="输入项目关键词、技术栈或描述...（支持项目名称、高活跃度、高健康度等）"
+                                required
+                                autocomplete="off"
+                            >
+                            <button class="btn btn-primary btn-lg search-btn" type="submit">
+                                <i class="fas fa-search"></i> 搜索
+                            </button>
+                        </form>
+                        
+                        <!-- 搜索建议 -->
+                        <div class="search-suggestions mt-3">
+                            <small class="text-muted">
+                                热门搜索：
+                                <a href="#" class="suggestion-link" data-query="microsoft">microsoft</a> •
+                                <a href="#" class="suggestion-link" data-query="高健康度">高健康度</a> •
+                                <a href="#" class="suggestion-link" data-query="高关注度">高关注度</a> •
+                                <a href="#" class="suggestion-link" data-query="高活跃度">高活跃度</a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 搜索结果 -->
+        <section id="searchResults" class="search-results-section py-4" style="display: none;">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4>
+                        <i class="fas fa-list me-2"></i>
+                        搜索结果
+                    </h4>
+                    <div class="d-flex align-items-center">
+                        <span id="resultCount" class="me-3"></span>
+                    </div>
+                </div>
+
+                <!-- AI搜索解释 -->
+                <div id="aiExplanation" class="alert alert-info" style="display: none;">
+                    <h6><i class="fas fa-robot me-2"></i>AI搜索分析</h6>
+                    <p id="explanationText" class="mb-0"></p>
+                </div>
+
+                <!-- 搜索参数 -->
+                <div id="searchParams" class="card mb-3" style="display: none;">
+                    <div class="card-body">
+                        <h6>搜索参数：</h6>
+                        <div id="paramsDisplay"></div>
+                    </div>
+                </div>
+
+                <!-- 结果列表 -->
+                <div id="resultsList"></div>
+
+                <!-- 分页 -->
+                <nav id="pagination" class="mt-4" style="display: none;">
+                    <ul class="pagination justify-content-center"></ul>
+                </nav>
+            </div>
+        </section>
+    </main>
+      
+    <!-- 功能按钮区域 -->
+    <section id="functionButtons" class="function-buttons-section py-4">
+        <div class="container">
+            <!-- 标题 -->
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h4 class="function-title">用数据大屏查看更多详情</h4>
+                </div>
+            </div>
+            
+            <!-- 第一行按钮 -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-8 col-lg-6">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="http://localhost:8100/#/de-link/ALNVGsLE" class="btn btn-primary btn-lg" target="_blank">
+                            具体项目查询
+                        </a>
+                        <a href="http://localhost:8100/#/de-link/OSbQO3gb" class="btn btn-info btn-lg" target="_blank">
+                            词云查看
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第二行按钮 -->
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <a href="http://localhost:8100/#/de-link/6kzY2m8o" class="btn btn-outline-secondary btn-sm" target="_blank">
+                            活跃度
+                        </a>
+                        <a href="http://localhost:8100/#/de-link/7f6Ii2vh" class="btn btn-outline-secondary btn-sm" target="_blank">
+                            代码变动
+                        </a>
+                        <a href="http://localhost:8100/#/de-link/vy73RqV9" class="btn btn-outline-secondary btn-sm" target="_blank">
+                            变动请求
+                        </a>
+                        <a href="http://localhost:8100/#/de-link/y5l00XAO" class="btn btn-outline-secondary btn-sm" target="_blank">
+                            贡献者
+                        </a>
+                        <a href="http://localhost:8100/#/de-link/txlIFO70" class="btn btn-outline-secondary btn-sm" target="_blank">
+                          事件
+                        </a>
+                        <a href="http://localhost:8100/#/de-link/WVB7rubf" class="btn btn-outline-secondary btn-sm" target="_blank">
+                            流行度
+                        </a>
+                        <a href="http://localhost:8100/#/de-link/LY2MWPsf" class="btn btn-outline-secondary btn-sm" target="_blank">
+                            健康值
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    <!-- 页脚 -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="mb-2">GitHub项目搜索引擎</h6>
+                    <p class="small mb-0">基于DeepSeek AI技术与DataEase技术构建</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="small mb-0">
+                        数据覆盖：2020年1月 - 2023年3月 |
+                        项目数量：300个top项目
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 项目详情模态框 -->
+    <div class="modal fade" id="projectModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">项目详情</h5>
+                    <button type="button" class="btn-close" onclick="closeModal()" aria-label="关闭"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="projectDetails">
+                        <!-- 项目详情将在这里动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载指示器 -->
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">加载中...</span>
+        </div>
+        <div class="loading-text">加载中...</div>
+        <div class="loading-subtext">可能需要加载一段时间</div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 使用端口8000的API服务
+        const API_BASE_URL = 'http://localhost:8000';
+        
+        // 重写fetch函数以使用正确的API
+        const originalFetch = window.fetch;
+        window.fetch = function(url, options) {
+            // 如果是API请求，确保使用正确的URL
+            if (url.startsWith('/api/')) {
+                const newUrl = API_BASE_URL + url;
+                console.log(`API请求: ${url} -> ${newUrl}`);
+                return originalFetch(newUrl, options);
+            }
+            return originalFetch(url, options);
+        };
+    </script>
+    <script src="/static/js/app_safe.js"></script>
+</body>
+</html>
